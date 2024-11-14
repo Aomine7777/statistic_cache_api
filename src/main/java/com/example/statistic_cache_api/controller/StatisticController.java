@@ -3,43 +3,45 @@ package com.example.statistic_cache_api.controller;
 import com.example.statistic_cache_api.dto.StatisticsByAsinDTO;
 import com.example.statistic_cache_api.dto.StatisticsByDateDTO;
 import com.example.statistic_cache_api.service.StatisticsService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 import static com.example.statistic_cache_api.dto.StatisticsByDateDTO.convertStatistic;
 
-
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/statistics")
 public class StatisticController {
 
-    @Autowired
-    private StatisticsService statisticsService;
+    private final StatisticsService statisticsService;
 
-    @GetMapping("/byDate/{startDate}/{endDate}")
-    public List<StatisticsByDateDTO> getByDate(@PathVariable String startDate, @PathVariable String endDate) {
-        return convertStatistic(this.statisticsService.getStatisticsByDate(startDate, endDate));
+    @GetMapping("/date")
+    public List<StatisticsByDateDTO> getByDate(
+            @RequestParam String startDate,
+            @RequestParam(required = false) String endDate) {
+        if (endDate == null) {
+            return convertStatistic(this.statisticsService.getStatisticsByDate(startDate));
+        } else {
+            return convertStatistic(this.statisticsService.getStatisticsByDate(startDate, endDate));
+        }
     }
 
-    @GetMapping("/byDate/{date}")
-    public List<StatisticsByDateDTO> getByDate(@PathVariable String date) {
-        return convertStatistic(this.statisticsService.getStatisticsByDate(date));
+    @GetMapping("/asin")
+    public List<StatisticsByAsinDTO> getByAsin(@RequestParam List<String> asins) {
+        if (asins == null || asins.isEmpty()) {
+            throw new IllegalArgumentException("At least one ASIN must be provided");
+        }
+        return StatisticsByAsinDTO.convertStatistic(this.statisticsService.getStatisticsByAsins(asins));
     }
 
-    @PostMapping("/byAsins")
-    public List<StatisticsByAsinDTO> getByAsin(@RequestBody List<String> values) {
-        return StatisticsByAsinDTO.convertStatistic(this.statisticsService.getStatisticsByAsins(values));
-    }
-
-    @GetMapping("/aggregateStatisticByAllDates")
-    public StatisticsByDateDTO getAggregatedStatisticByAllDates() {
+    @GetMapping("/date/total")
+    public StatisticsByDateDTO getStatisticByAllDates() {
         return new StatisticsByDateDTO(this.statisticsService.getStatisticsByAllDates());
     }
 
-    @GetMapping("/aggregateStatisticByAllAsins")
-    public StatisticsByAsinDTO getAggregatedStatisticByAllAsins() {
+    @GetMapping("/asin/total")
+    public StatisticsByAsinDTO getStatisticByAllAsins() {
         return new StatisticsByAsinDTO(this.statisticsService.getStatisticsByAllAsins());
     }
 }

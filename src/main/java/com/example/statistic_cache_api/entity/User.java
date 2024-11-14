@@ -1,6 +1,5 @@
 package com.example.statistic_cache_api.entity;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,36 +1,33 @@
 package com.example.statistic_cache_api.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.math.BigDecimal;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class TrafficByDate {
-    private Integer browserPageViews;
-    private Integer browserPageViewsB2B;
-    private Integer mobileAppPageViews;
-    private Integer mobileAppPageViewsB2B;
-    private Integer pageViews;
-    private Integer pageViewsB2B;
-    private Integer browserSessions;
-    private Integer browserSessionsB2B;
-    private Integer mobileAppSessions;
-    private Integer mobileAppSessionsB2B;
-    private Integer sessions;
-    private Integer sessionsB2B;
-    private BigDecimal buyBoxPercentage;
-    private BigDecimal buyBoxPercentageB2B;
-    private BigDecimal orderItemSessionPercentage;
-    private BigDecimal orderItemSessionPercentageB2B;
-    private BigDecimal unitSessionPercentage;
-    private BigDecimal unitSessionPercentageB2B;
-    private Integer averageOfferCount;
-    private Integer averageParentItems;
-    private Integer feedbackReceived;
-    private Integer negativeFeedbackReceived;
-    private BigDecimal receivedNegativeFeedbackRate;
-}
+@JsonIgnoreProperties(ignoreUnknown = true)
+public record TrafficByDate(
+        Integer browserPageViews,
+        Integer browserPageViewsB2B,
+        Integer mobileAppPageViews,
+        Integer mobileAppPageViewsB2B,
+        Integer pageViews,
+        Integer pageViewsB2B,
+        Integer browserSessions,
+        Integer browserSessionsB2B,
+        Integer mobileAppSessions,
+        Integer mobileAppSessionsB2B,
+        Integer sessions,
+        Integer sessionsB2B,
+        BigDecimal buyBoxPercentage,
+        BigDecimal buyBoxPercentageB2B,
+        BigDecimal orderItemSessionPercentage,
+        BigDecimal orderItemSessionPercentageB2B,
+        BigDecimal unitSessionPercentage,
+        BigDecimal unitSessionPercentageB2B,
+        Integer averageOfferCount,
+        Integer averageParentItems,
+        Integer feedbackReceived,
+        Integer negativeFeedbackReceived,
+        BigDecimal receivedNegativeFeedbackRate
+) {}

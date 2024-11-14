@@ -3,17 +3,17 @@ package com.example.statistic_cache_api.service.impl;
 import com.example.statistic_cache_api.entity.Statistics;
 import com.example.statistic_cache_api.repository.StatisticsRepository;
 import com.example.statistic_cache_api.service.StatisticsService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class StatisticsServiceImpl implements StatisticsService {
 
-    @Autowired
-    private StatisticsRepository statisticsRepository;
+    private final StatisticsRepository statisticsRepository;
 
     @Cacheable(value = "statisticsByDate", key = "#startDate + '_' + #endDate")
     @Override

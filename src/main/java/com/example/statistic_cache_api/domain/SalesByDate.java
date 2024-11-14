@@ -1,32 +1,28 @@
 package com.example.statistic_cache_api.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.math.BigDecimal;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class SalesByDate {
-    private AmountWithCurrency orderedProductSales;
-    private AmountWithCurrency orderedProductSalesB2B;
-    private Integer  unitsOrdered;
-    private Integer  unitsOrderedB2B;
-    private Integer  totalOrderItems;
-    private Integer  totalOrderItemsB2B;
-    private AmountWithCurrency averageSalesPerOrderItem;
-    private AmountWithCurrency averageSalesPerOrderItemB2B;
-    private BigDecimal averageUnitsPerOrderItem;
-    private BigDecimal  averageUnitsPerOrderItemB2B;
-    private AmountWithCurrency averageSellingPrice;
-    private AmountWithCurrency averageSellingPriceB2B;
-    private Integer  unitsRefunded;
-    private BigDecimal  refundRate;
-    private BigDecimal  claimsGranted;
-    private AmountWithCurrency claimsAmount;
-    private AmountWithCurrency shippedProductSales;
-    private Integer  unitsShipped;
-    private Integer  ordersShipped;
-}
+@JsonIgnoreProperties(ignoreUnknown = true)
+public record SalesByDate(
+        AmountWithCurrency orderedProductSales,
+        AmountWithCurrency orderedProductSalesB2B,
+        Integer unitsOrdered,
+        Integer unitsOrderedB2B,
+        Integer totalOrderItems,
+        Integer totalOrderItemsB2B,
+        AmountWithCurrency averageSalesPerOrderItem,
+        AmountWithCurrency averageSalesPerOrderItemB2B,
+        BigDecimal averageUnitsPerOrderItem,
+        BigDecimal averageUnitsPerOrderItemB2B,
+        AmountWithCurrency averageSellingPrice,
+        AmountWithCurrency averageSellingPriceB2B,
+        Integer unitsRefunded,
+        BigDecimal refundRate,
+        BigDecimal claimsGranted,
+        AmountWithCurrency claimsAmount,
+        AmountWithCurrency shippedProductSales,
+        Integer unitsShipped,
+        Integer ordersShipped
+) {}

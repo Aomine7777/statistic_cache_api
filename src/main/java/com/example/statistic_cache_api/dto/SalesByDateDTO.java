@@ -28,25 +28,25 @@ public record SalesByDateDTO(
 ) {
     public SalesByDateDTO(SalesByDate statistic) {
         this(
-                statistic.getOrderedProductSales(),
-                statistic.getOrderedProductSalesB2B(),
-                statistic.getUnitsOrdered(),
-                statistic.getUnitsOrderedB2B(),
-                statistic.getTotalOrderItems(),
-                statistic.getTotalOrderItemsB2B(),
-                statistic.getAverageSalesPerOrderItem(),
-                statistic.getAverageSalesPerOrderItemB2B(),
-                statistic.getAverageUnitsPerOrderItem(),
-                statistic.getAverageUnitsPerOrderItemB2B(),
-                statistic.getAverageSellingPrice(),
-                statistic.getAverageSellingPriceB2B(),
-                statistic.getUnitsRefunded(),
-                statistic.getRefundRate(),
-                statistic.getClaimsGranted(),
-                statistic.getClaimsAmount(),
-                statistic.getShippedProductSales(),
-                statistic.getUnitsShipped(),
-                statistic.getOrdersShipped()
+                statistic.orderedProductSales(),
+                statistic.orderedProductSalesB2B(),
+                statistic.unitsOrdered(),
+                statistic.unitsOrderedB2B(),
+                statistic.totalOrderItems(),
+                statistic.totalOrderItemsB2B(),
+                statistic.averageSalesPerOrderItem(),
+                statistic.averageSalesPerOrderItemB2B(),
+                statistic.averageUnitsPerOrderItem(),
+                statistic.averageUnitsPerOrderItemB2B(),
+                statistic.averageSellingPrice(),
+                statistic.averageSellingPriceB2B(),
+                statistic.unitsRefunded(),
+                statistic.refundRate(),
+                statistic.claimsGranted(),
+                statistic.claimsAmount(),
+                statistic.shippedProductSales(),
+                statistic.unitsShipped(),
+                statistic.ordersShipped()
         );
     }
 }

@@ -4,11 +4,10 @@ import com.example.statistic_cache_api.entity.User;
 import com.example.statistic_cache_api.repository.UserRepository;
 import com.example.statistic_cache_api.security.AuthRequest;
 import com.example.statistic_cache_api.security.AuthResponse;
-import com.example.statistic_cache_api.security.JWTUtil;
+import com.example.statistic_cache_api.security.JwtTokenService;
 import com.example.statistic_cache_api.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -28,7 +27,7 @@ public class UserServiceImpl implements UserService {
 
     private final AuthenticationManager authenticationManager;
     private final UserRepository userRepository;
-    private final JWTUtil jwtTokenUtil;
+    private final JwtTokenService jwtTokenUtil;
 
     public static final String INCORRECT_NAME_OR_PASSWORD_MESSAGE = "The name or password is incorrect.";
 

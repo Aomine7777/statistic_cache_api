@@ -3,16 +3,16 @@ package com.example.statistic_cache_api.controller;
 import com.example.statistic_cache_api.security.AuthRequest;
 import com.example.statistic_cache_api.security.AuthResponse;
 import com.example.statistic_cache_api.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/auth")
 public class AuthenticationController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.OK)

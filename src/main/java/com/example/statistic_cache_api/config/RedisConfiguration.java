@@ -17,13 +17,13 @@ import java.util.Objects;
 @Configuration
 public class RedisConfiguration {
 
-    private static final Integer CASHING_TIME_IN_MINUTES = 2;
+    private static final Integer CACHING_TIME_IN_MINUTES = 2;
 
     @Bean
     public RedisCacheManager redisCacheManager(RedisConnectionFactory connectionFactory) {
-        log.info("Initializing RedisCacheManager with cache time of {} minutes", CASHING_TIME_IN_MINUTES);
+        log.info("Initializing RedisCacheManager with cache time of {} minutes", CACHING_TIME_IN_MINUTES);
         RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
-                .entryTtl(Duration.ofMinutes(CASHING_TIME_IN_MINUTES))
+                .entryTtl(Duration.ofMinutes(CACHING_TIME_IN_MINUTES))
                 .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()))
                 .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()));
 

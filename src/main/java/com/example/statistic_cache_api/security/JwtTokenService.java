@@ -16,7 +16,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
-public class JWTUtil {
+public class JwtTokenService {
 
     @Value("${jwt.secret}")
     private String SECRET_KEY;

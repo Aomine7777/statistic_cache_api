@@ -33,7 +33,7 @@ public class StatisticsScheduler {
     @Scheduled(cron = "0 * * * * *")
     public void updateStatistics() {
         try {
-            var jsonNode = objectMapper.readTree(new File("test_report.json"));
+            var jsonNode = objectMapper.readTree(new File("statistics_data.json"));
             var reportOptions = objectMapper.convertValue(jsonNode.get(REPORT_SPECIFICATION), new TypeReference<ReportSpecification>() {});
 
             var allSales = new ArrayList<>(processSales(jsonNode.get(SALES_BY_DATE), reportOptions, true));

@@ -13,12 +13,12 @@ public record SalesByAsinDTO(
 ) {
     public SalesByAsinDTO(SalesByAsin statistic) {
         this(
-                statistic.getUnitsOrdered(),
-                statistic.getUnitsOrderedB2B(),
-                statistic.getOrderedProductSales(),
-                statistic.getOrderedProductSalesB2B(),
-                statistic.getTotalOrderItems(),
-                statistic.getTotalOrderItemsB2B()
+                statistic.unitsOrdered(),
+                statistic.unitsOrderedB2B(),
+                statistic.orderedProductSales(),
+                statistic.orderedProductSalesB2B(),
+                statistic.totalOrderItems(),
+                statistic.totalOrderItemsB2B()
         );
     }
 }

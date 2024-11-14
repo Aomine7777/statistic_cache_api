@@ -1,17 +1,14 @@
 package com.example.statistic_cache_api.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class SalesByAsin {
-    private Integer unitsOrdered;
-    private Integer unitsOrderedB2B;
-    private AmountWithCurrency orderedProductSales;
-    private AmountWithCurrency orderedProductSalesB2B;
-    private Integer totalOrderItems;
-    private Integer totalOrderItemsB2B;
-}
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+public record SalesByAsin(
+        Integer unitsOrdered,
+        Integer unitsOrderedB2B,
+        AmountWithCurrency orderedProductSales,
+        AmountWithCurrency orderedProductSalesB2B,
+        Integer totalOrderItems,
+        Integer totalOrderItemsB2B
+) {}

@@ -21,10 +21,10 @@ public class JWTFilter extends OncePerRequestFilter {
     public static final String AUTHORIZATION_HEADER = "Authorization";
     public static final String BEARER_AUTHORIZATION_HEADER = "Bearer ";
 
-    private final JWTUtil jwtUtil;
+    private final JwtTokenService jwtTokenService;
 
-    public JWTFilter(JWTUtil jwtUtil) {
-        this.jwtUtil = jwtUtil;
+    public JWTFilter(JwtTokenService jwtTokenService) {
+        this.jwtTokenService = jwtTokenService;
     }
 
     @Override
@@ -38,11 +38,11 @@ public class JWTFilter extends OncePerRequestFilter {
 
         if (authorizationHeader != null && authorizationHeader.startsWith(BEARER_AUTHORIZATION_HEADER)) {
             jwt = authorizationHeader.substring(7);
-            username = this.jwtUtil.extractUsername(jwt);
+            username = this.jwtTokenService.extractUsername(jwt);
         }
 
         if (nonNull(username) && isNull(SecurityContextHolder.getContext().getAuthentication())) {
-            var commaSeparatedListOfAuthorities = this.jwtUtil.extractAuthorities(jwt);
+            var commaSeparatedListOfAuthorities = this.jwtTokenService.extractAuthorities(jwt);
             var authorities = AuthorityUtils.commaSeparatedStringToAuthorityList(commaSeparatedListOfAuthorities);
             var usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
                     username,
