@@ -30,7 +30,7 @@ public class StatisticsScheduler {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    @Scheduled(cron = "0 * * * * *")
+    @Scheduled(cron = "*/30 * * * * *")
     public void updateStatistics() {
         try {
             var jsonNode = objectMapper.readTree(new File("statistics_data.json"));

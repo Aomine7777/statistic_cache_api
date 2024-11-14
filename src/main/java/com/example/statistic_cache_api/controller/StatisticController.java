@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 import static com.example.statistic_cache_api.dto.StatisticsByDateDTO.convertStatistic;
+import static io.netty.util.internal.StringUtil.isNullOrEmpty;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,7 +21,7 @@ public class StatisticController {
     public List<StatisticsByDateDTO> getByDate(
             @RequestParam String startDate,
             @RequestParam(required = false) String endDate) {
-        if (endDate == null) {
+        if (isNullOrEmpty(endDate)) {
             return convertStatistic(this.statisticsService.getStatisticsByDate(startDate));
         } else {
             return convertStatistic(this.statisticsService.getStatisticsByDate(startDate, endDate));
