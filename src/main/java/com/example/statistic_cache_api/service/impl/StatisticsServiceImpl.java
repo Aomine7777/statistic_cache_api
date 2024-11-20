@@ -15,13 +15,13 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     private final StatisticsRepository statisticsRepository;
 
-    @Cacheable(value = "statisticsByDate", key = "#startDate + '_' + #endDate")
+    @Cacheable(value = "statisticsByDateRange", key = "T(java.util.Objects).hash(#startDate, #endDate)")
     @Override
     public List<Statistics> getStatisticsByDate(String startDate, String endDate) {
         return this.statisticsRepository.findByDateBetween(startDate, endDate);
     }
 
-    @Cacheable(value = "statisticsByDate", key = "#date")
+    @Cacheable(value = "statisticsBySingleDate", key = "#date")
     @Override
     public List<Statistics> getStatisticsByDate(String date) {
         return this.statisticsRepository.findByDate(date);
